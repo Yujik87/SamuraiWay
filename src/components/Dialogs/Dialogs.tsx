@@ -9,11 +9,11 @@ const DialogItem = (props: any) => {
     </div>
 }
 
-const MessageText = (props: string) => {
+const Message = (props: any) => {
     return <div className={s.dialog}>{props.message}</div>
 }
 
-export const Dialogs = () => {
+export const Dialogs = (props: any) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -27,9 +27,10 @@ export const Dialogs = () => {
 
             </div>
             <div className={s.messages}>
-                <MessageText message='Hi!'/>
-                <MessageText message='How are you?'/>
-                <MessageText message='Yo!'/>
+                <Message
+                    message='Hi!'/>
+                <Message message='How are you?'/>
+                <Message message='Yo!'/>
 
             </div>
         </div>
