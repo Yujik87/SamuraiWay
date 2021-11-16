@@ -13,6 +13,11 @@ const Message = (props: any) => {
     return <div className={s.dialog}>{props.message}</div>
 }
 
+type DialogsPropsType = {
+    id: string
+    name: string
+}
+
 export const Dialogs = (props: any) => {
     return (
         <div className={s.dialogs}>
@@ -27,9 +32,10 @@ export const Dialogs = (props: any) => {
 
             </div>
             <div className={s.messages}>
-                <Message
-                    message='Hi!'/>
+                <Message message='Hi!'/>
                 <Message message='How are you?'/>
+                <Message message='Yo!'/>
+                <Message message='Yo!'/>
                 <Message message='Yo!'/>
 
             </div>
