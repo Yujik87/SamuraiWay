@@ -7,10 +7,6 @@ import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 
 function App(props: any) {
-    /* let posts = [
-         {id: 1, message: "Hi, how are you?", likesCount: 12},
-         {id: 2, message: "It`s my first post", likesCount: 11},
-     ]*/
 
     return (
         <BrowserRouter>
@@ -18,9 +14,6 @@ function App(props: any) {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    {/*<Route path='/dialogs' component={Dialogs}/>
-                    <Route path='/profile' component={Profile}/>*/}
-
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                state={props.appState.dialogsPage}
