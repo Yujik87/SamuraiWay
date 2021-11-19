@@ -12,7 +12,7 @@ export const Profile = (props:any) => {
     ]*/
     return (
         <div className={s.content}>
-            <MyPosts postsArr={props.posts}/>
+            <MyPosts postsArr={props.state.posts}/>
             <ProfileInfo/>
         </div>
     )

@@ -7,10 +7,10 @@ import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 
 function App(props: any) {
-   /* let posts = [
-        {id: 1, message: "Hi, how are you?", likesCount: 12},
-        {id: 2, message: "It`s my first post", likesCount: 11},
-    ]*/
+    /* let posts = [
+         {id: 1, message: "Hi, how are you?", likesCount: 12},
+         {id: 2, message: "It`s my first post", likesCount: 11},
+     ]*/
 
     return (
         <BrowserRouter>
@@ -21,10 +21,18 @@ function App(props: any) {
                     {/*<Route path='/dialogs' component={Dialogs}/>
                     <Route path='/profile' component={Profile}/>*/}
 
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/dialogs'
+                           render={() => <Dialogs
+                               state={props.appState.dialogsPage}
+                           />}
+                    />
+                    <Route path='/profile'
+                           render={() => <Profile
+                               state={props.appState.profilePage}
+                           />}
+                    />
 
-                   {/* <Route path='/news' component={News}/>
+                    {/* <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>*/}
                 </div>
