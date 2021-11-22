@@ -8,7 +8,10 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 export const Profile = (props:any) => {
     return (
         <div className={s.content}>
-            <MyPosts postsArr={props.state.posts}/>
+            <MyPosts
+                postsArr={props.state.posts}
+                addPost={props.addPost}
+            />
             <ProfileInfo/>
         </div>
     )

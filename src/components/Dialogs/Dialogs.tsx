@@ -22,6 +22,11 @@ export const Dialogs = (props: any) => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
+            <div>
+                <textarea name="newMessage"></textarea>
+                <br/>
+                <button>Send message</button>
+            </div>
         </div>
     )
 }
