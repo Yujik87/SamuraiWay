@@ -1,10 +1,15 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import { Post } from './Post/Post';
+import {Post} from './Post/Post';
 
 export const MyPosts = (props: any) => {
 
-    let postsElements = props.postsArr.map((p: { message: any; likesCount: any; }) => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.postsArr.map(
+        (p: { message: any; likesCount: any; }) =>
+            <Post
+                message={p.message}
+                likesCount={p.likesCount}
+            />)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 

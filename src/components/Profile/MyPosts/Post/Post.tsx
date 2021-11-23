@@ -1,7 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
 
-export const Post = (props: any) => {
+
+type PostPropsType = {
+    message: string
+    likesCount: number
+}
+export const Post = (props: PostPropsType) => {
     return (
         <div>
             <div className={s.postItem}>
