@@ -1,5 +1,6 @@
 import {rerenderEntireTree} from "../render";
 
+
 type MessageType = {
     id: number
     message: string
@@ -24,7 +25,7 @@ type DialogsPageType = {
 }
 type SidebarType = {}
 
-type RootStateType ={
+export type RootStateType ={
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
@@ -70,7 +71,7 @@ export let addPost = () => {
     rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText: any) => {
+export let updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
