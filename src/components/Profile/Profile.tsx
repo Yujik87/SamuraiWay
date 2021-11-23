@@ -9,7 +9,9 @@ export const Profile = (props:any) => {
     return (
         <div className={s.content}>
             <MyPosts
-                postsArr={props.state.posts}
+                postsArr={props.profilePage.posts}
+                newPostText={props.profilePage.newPostText}
+                updateNewPostText={props.updateNewPostText}
                 addPost={props.addPost}
             />
             <ProfileInfo/>
