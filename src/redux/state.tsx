@@ -19,9 +19,10 @@ export type ProfilePageType = {
     posts: Array <PostType>
     newPostText: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 type SidebarType = {}
 
@@ -55,7 +56,8 @@ let state: RootStateType = {
             {id: 4, message: 'Yo!'},
             {id: 5, message: 'Yo!'},
             {id: 6, message: 'Yo!'},
-        ]
+        ],
+        newMessageText: 'Type your message here!'
     },
     sidebar: {}
 }
