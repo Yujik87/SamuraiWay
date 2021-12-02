@@ -25,7 +25,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div>
                 <textarea
                     name="newMessage"
-                    ref={}
+
+                    //ref={}
                 >
 
                 </textarea>

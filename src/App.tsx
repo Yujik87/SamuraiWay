@@ -7,6 +7,10 @@ import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 
 
+type AppPropsType = {
+
+}
+
 function App(props: any) {
 
     return (
