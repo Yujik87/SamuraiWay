@@ -35,7 +35,7 @@ export const MyPosts = (props: MyPostPropsType) => {
 
     return (
         <div className={s.postsBlock}>
-            MyPosts
+            My Posts
             <div>
                 <textarea
                     onChange={onPostChange}
