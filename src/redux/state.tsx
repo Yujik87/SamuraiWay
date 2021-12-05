@@ -78,4 +78,14 @@ export let updateNewPostText = (newText: string) => {
     rerenderEntireTree(state);
 }
 
+export let addMessage = () => {
+    let newMessage  = {
+        id: 8,
+        message: state.dialogsPage.newMessageText,
+    }
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+
 export default state;

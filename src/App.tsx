@@ -22,6 +22,7 @@ function App(props: any) {
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                state={props.state.dialogsPage}
+                               addMessage={props.addMessage}
                            />}
                     />
                     <Route path='/profile'
