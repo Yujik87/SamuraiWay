@@ -88,4 +88,9 @@ export let addMessage = () => {
     rerenderEntireTree(state);
 }
 
+export let updateNewMessageText = (newText: string) => {
+    state.dialogsPage.newMessageText = newText;
+    rerenderEntireTree(state);
+}
+
 export default state;
