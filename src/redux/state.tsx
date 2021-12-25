@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (qw: any) => {
+    console.log('State changed!')
+}
 
 
 type MessageType = {
@@ -62,6 +64,8 @@ let state: RootStateType = {
     sidebar: {}
 }
 
+//window.state = state;
+
 export let addPost = () => {
     let newPost: PostType = {
         id: 5,
@@ -92,5 +96,9 @@ export let updateNewMessageText = (newText: string) => {
     state.dialogsPage.newMessageText = newText;
     rerenderEntireTree(state);
 }
+
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer;
+};
 
 export default state;
