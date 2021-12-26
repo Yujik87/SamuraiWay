@@ -1,3 +1,4 @@
+
 let rerenderEntireTree = (qw: any) => {
     console.log('State changed!')
 }
@@ -34,48 +35,9 @@ export type RootStateType ={
     sidebar: SidebarType
 }
 
-let state: RootStateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: "Hi, how are you?", likesCount: 12},
-            {id: 2, message: "It`s my first post", likesCount: 11},
-        ],
-        newPostText: 'IT-kamasutra.com'
-    },
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Dimych'},
-            {id: 2, name: 'Andrew'},
-            {id: 3, name: 'Sveta'},
-            {id: 4, name: 'Sasha'},
-            {id: 5, name: 'Viktor'},
-            {id: 6, name: 'Valera'},
-        ],
-        messages: [
-            {id: 1, message: 'Hi!'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Yo!'},
-            {id: 4, message: 'Yo!'},
-            {id: 5, message: 'Yo!'},
-            {id: 6, message: 'Yo!'},
-        ],
-        newMessageText: 'Type your message here!'
-    },
-    sidebar: {}
-}
-
 //window.state = state;
 
-export let addPost = () => {
-    let newPost: PostType = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    }
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
-}
+export let
 
 export let updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
@@ -97,8 +59,55 @@ export let updateNewMessageText = (newText: string) => {
     rerenderEntireTree(state);
 }
 
-export const subscribe = (observer: any) => {
+export const subscribe = (observer: () => void) => {
     rerenderEntireTree = observer;
 };
 
-export default state;
+export type StoreType = {
+    _state: RootStateType
+    addPost: () => void
+}
+
+const store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: "Hi, how are you?", likesCount: 12},
+                {id: 2, message: "It`s my first post", likesCount: 11},
+            ],
+            newPostText: 'IT-kamasutra.com'
+        },
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Andrew'},
+                {id: 3, name: 'Sveta'},
+                {id: 4, name: 'Sasha'},
+                {id: 5, name: 'Viktor'},
+                {id: 6, name: 'Valera'},
+            ],
+            messages: [
+                {id: 1, message: 'Hi!'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Yo!'},
+                {id: 4, message: 'Yo!'},
+                {id: 5, message: 'Yo!'},
+                {id: 6, message: 'Yo!'},
+            ],
+            newMessageText: 'Type your message here!'
+        },
+        sidebar: {}
+    },
+    addPost(){
+        let newPost: PostType = {
+            id: 5,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        }
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        rerenderEntireTree(this._state);
+    }
+}
+
+export default store;
