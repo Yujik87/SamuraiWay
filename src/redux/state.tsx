@@ -1,9 +1,4 @@
 
-let rerenderEntireTree = (qw: any) => {
-    console.log('State changed!')
-}
-
-
 type MessageType = {
     id: number
     message: string
@@ -37,35 +32,15 @@ export type RootStateType ={
 
 //window.state = state;
 
-export let
-
-export let updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-}
-
-export let addMessage = () => {
-    let newMessage  = {
-        id: 8,
-        message: state.dialogsPage.newMessageText,
-    }
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state);
-}
-
-export let updateNewMessageText = (newText: string) => {
-    state.dialogsPage.newMessageText = newText;
-    rerenderEntireTree(state);
-}
-
-export const subscribe = (observer: () => void) => {
-    rerenderEntireTree = observer;
-};
-
 export type StoreType = {
     _state: RootStateType
     addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updateNewMessageText: (newText: string) => void
+    _rerenderEntireTree: () => void
+    subscribe:(observer: () => void) => void
+    getState: () => RootStateType
 }
 
 const store: StoreType = {
@@ -106,7 +81,33 @@ const store: StoreType = {
         }
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        rerenderEntireTree(this._state);
+        this._rerenderEntireTree();
+    },
+    updateNewPostText(newText: string){
+        this._state.profilePage.newPostText = newText;
+        this._rerenderEntireTree();
+    },
+    addMessage(){
+        let newMessage  = {
+            id: 8,
+            message: this._state.dialogsPage.newMessageText,
+        }
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = '';
+        this._rerenderEntireTree();
+    },
+    updateNewMessageText(newText: string){
+        this._state.dialogsPage.newMessageText = newText;
+        this._rerenderEntireTree();
+    },
+    _rerenderEntireTree(){
+        console.log('State changed!')
+    },
+    subscribe(observer: () => void){
+        this._rerenderEntireTree = observer;
+    },
+    getState(){
+        return this._state;
     }
 }
 
