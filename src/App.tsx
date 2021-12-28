@@ -5,14 +5,15 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
+import {StoreType} from "./redux/state";
 
 
 type AppPropsType = {
-
+    store: StoreType
 }
 
-function App(props: any) {
-
+function App(props: AppPropsType) {
+    const state = props.store.getState;
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -21,7 +22,7 @@ function App(props: any) {
                 <div className="app-wrapper-content">
                     <Route path='/dialogs'
                            render={() => <Dialogs
-                               dialogsPage={props.state.dialogsPage}
+                               dialogsPage={state.dialogsPage}
                                addMessage={props.addMessage}
                                updateNewMessageText={props.updateNewMessageText}
                            />}
