@@ -8,7 +8,7 @@ import {DialogsPageType} from "../../redux/state";
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
     addMessage: () => void
-    updateNewMessageText: (text: string | undefined) => void
+    updateNewMessageText: (newText: string | undefined) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {

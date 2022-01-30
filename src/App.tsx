@@ -9,30 +9,21 @@ import {StoreType} from "./redux/state";
 
 
 type AppPropsType = {
-    store: StoreType
+    //store: StoreType
+    //dispatch: number
 }
 
-function App(props: AppPropsType) {
-    const state = props.store.getState;
+function App() {
     return (
-        <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs'
-                           render={() => <Dialogs
-                               dialogsPage={state.dialogsPage}
-                               addMessage={props.addMessage}
-                               updateNewMessageText={props.updateNewMessageText}
-                           />}
+                           render={() => <DialogsContainer />}
                     />
                     <Route path='/profile'
-                           render={() => <Profile
-                               profilePage={props.state.profilePage}
-                               addPost={props.addPost}
-                               updateNewPostText={props.updateNewPostText}
-                           />}
+                           render={() => <ProfileContainer />}
                     />
 
                     {/* <Route path='/news' component={News}/>
@@ -40,7 +31,6 @@ function App(props: AppPropsType) {
                     <Route path='/settings' component={Settings}/>*/}
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 

@@ -81,11 +81,11 @@ const store: StoreType = {
         }
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        this._rerenderEntireTree();
+        this._rerenderEntireTree(this._state);
     },
     updateNewPostText(newText: string){
         this._state.profilePage.newPostText = newText;
-        this._rerenderEntireTree();
+        this._rerenderEntireTree(this._state);
     },
     addMessage(){
         let newMessage  = {
@@ -94,11 +94,11 @@ const store: StoreType = {
         }
         this._state.dialogsPage.messages.push(newMessage);
         this._state.dialogsPage.newMessageText = '';
-        this._rerenderEntireTree();
+        this._rerenderEntireTree(this._state);
     },
     updateNewMessageText(newText: string){
         this._state.dialogsPage.newMessageText = newText;
-        this._rerenderEntireTree();
+        this._rerenderEntireTree(this._state);
     },
     _rerenderEntireTree(){
         console.log('State changed!')
@@ -112,3 +112,4 @@ const store: StoreType = {
 }
 
 export default store;
+//window.store = store;
