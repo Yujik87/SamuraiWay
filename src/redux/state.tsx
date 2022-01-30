@@ -24,7 +24,32 @@ export type DialogsPageType = {
 }
 type SidebarType = {}
 
-export type RootStateType ={
+type StateType = {
+    profilePage: {
+        messageForNewPost: string,
+        posts: { id: number, message: string, likesCount: number }[],
+    }
+    dialogsPage: {
+        messageForNewMessage: string,
+        messages: { id: number, message: string }[],
+        dialogs: { id: number, name: string }[],
+    }
+    sidebar: {}
+}
+type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    _callSubscriber: () => void
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+type ActionsTypes =  ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof ChangeNewTextCallbackActionCreator> |
+    ReturnType<typeof ChangeNewMessageCallbackActionCreator> |
+    ReturnType<typeof addMessageActionCreator>
+
+/*export type RootStateType ={
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
@@ -109,7 +134,7 @@ const store: StoreType = {
     getState(){
         return this._state;
     }
-}
+}*/
 
-export default store;
+//export default store;
 //window.store = store;
