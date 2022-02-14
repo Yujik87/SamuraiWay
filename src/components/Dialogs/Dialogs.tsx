@@ -11,7 +11,7 @@ type DialogsPropsType = {
     updateNewMessageText: (newText: string | undefined) => void
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     let dialogElements = props.dialogsPage.dialogs.map(
         d => <DialogItem name={d.name} id={d.id}/>)
@@ -53,3 +53,5 @@ export const Dialogs = (props: DialogsPropsType) => {
         </div>
     )
 }
+
+export default Dialogs;
