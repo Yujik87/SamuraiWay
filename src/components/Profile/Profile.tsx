@@ -14,12 +14,7 @@ type ProfilePropsType = {
 export const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.content}>
-            <MyPosts
-                postsArr={props.profilePage.posts}
-                newPostText={props.profilePage.newPostText}
-                updateNewPostText={props.updateNewPostText}
-                addPost={props.addPost}
-            />
+            <MyPostscontainer />
             <ProfileInfo/>
         </div>
     )
