@@ -1,18 +1,11 @@
 import React from 'react';
 import {Route} from "react-router-dom";
 import './App.css';
-import {Dialogs} from './components/Dialogs/Dialogs';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
-import {Profile} from './components/Profile/Profile';
-import ProfileContainer from "./components/Profile/ProfileContainer";
 
-
-type AppPropsType = {
-    //store: StoreType
-    //dispatch: number
-}
 
 function App() {
     return (
@@ -23,9 +16,9 @@ function App() {
                 <Route path='/dialogs'
                        render={() => <DialogsContainer />}
                     />
-                <Route path='/profile'
+                {/*<Route path='/profile'
                        render={() => <ProfileContainer />}
-                    />
+                    />*/}
 
                     {/* <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

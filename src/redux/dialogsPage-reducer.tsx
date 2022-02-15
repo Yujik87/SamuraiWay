@@ -9,33 +9,32 @@ type DialogsType = {
     id: number
     name: string
 }
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> |
-    ReturnType<typeof ChangeNewTextCallbackActionCreator> |
-    ReturnType<typeof ChangeNewMessageCallbackActionCreator> |
-    ReturnType<typeof addMessageActionCreator>
-
 export type DialogPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogsType>
-    messageForNewMessage: string
+    textForNewMessage: string
 }
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof ChangeNewTextCallbackActionCreator> |
+    ReturnType<typeof updateNewMessageBodyAC> |
+    ReturnType<typeof sendMessageAC>
 
 
 //-----------ACTION CREATORS--------
-export const addMessageActionCreator = () => {
+export const sendMessageAC = () => {
     return {
-        type: "ADD-MESSAGE",
+        type: "SEND-MESSAGE",
     } as const
 }
-export const ChangeNewMessageCallbackActionCreator = (NewMessage: string) => {
+export const updateNewMessageBodyAC = (NewMessage: string) => {
     return {
-        type: "CHANGE-NEW-MESSAGE-CALLBACK",
+        type: "UPDATE-NEW-MESSAGE-BODY",
         NewMessage: NewMessage
     } as const
 }
 
 let initialState: DialogPageType = {
-    messageForNewMessage: "",
+    textForNewMessage: "",
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How is your it-kamasutra?'},
@@ -55,13 +54,13 @@ let initialState: DialogPageType = {
 
 const dialogsPageReducer = (state: DialogPageType = initialState, action: ActionsTypes): DialogPageType => {
     switch (action.type) {
-        case "CHANGE-NEW-MESSAGE-CALLBACK":
-            return {...state, messageForNewMessage: action.NewMessage}
-        case "ADD-MESSAGE":
-            let body = state.messageForNewMessage
+        case "UPDATE-NEW-MESSAGE-BODY":
+            return {...state, textForNewMessage: action.NewMessage}
+        case "SEND-MESSAGE":
+            let body = state.textForNewMessage
             return {
                 ...state,
-                messageForNewMessage: "",
+                textForNewMessage: "",
                 messages: [...state.messages, {id: new Date().getTime(), message: body}],
             }
         default:

@@ -1,11 +1,11 @@
-import {addMessageActionCreator, ChangeNewMessageCallbackActionCreator} from "./dialogsPage-reducer";
+import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsPage-reducer";
 
 
 type ActionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof ChangeNewTextCallbackActionCreator> |
-    ReturnType<typeof ChangeNewMessageCallbackActionCreator> |
-    ReturnType<typeof addMessageActionCreator> |
+    ReturnType<typeof updateNewMessageBodyAC> |
+    ReturnType<typeof sendMessageAC> |
     ReturnType<typeof SetUserProfile>
 
 type PostType = {
