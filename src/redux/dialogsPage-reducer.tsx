@@ -1,4 +1,4 @@
-import {addPostActionCreator, ChangeNewTextCallbackActionCreator} from "./profilePage-reducer";
+//import {addPostActionCreator, ChangeNewTextCallbackActionCreator} from "./profilePage-reducer";
 
 
 type MessageType = {
@@ -14,9 +14,10 @@ export type DialogPageType = {
     dialogs: Array<DialogsType>
     textForNewMessage: string
 }
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> |
-    ReturnType<typeof ChangeNewTextCallbackActionCreator> |
-    ReturnType<typeof updateNewMessageBodyAC> |
+
+export type ActionsTypes = //ReturnType<typeof addPostActionCreator> |
+    //ReturnType<typeof ChangeNewTextCallbackActionCreator> |
+    ReturnType<typeof updateNewMessageTextAC> |
     ReturnType<typeof sendMessageAC>
 
 
@@ -26,9 +27,9 @@ export const sendMessageAC = () => {
         type: "SEND-MESSAGE",
     } as const
 }
-export const updateNewMessageBodyAC = (NewMessage: string) => {
+export const updateNewMessageTextAC = (NewMessage: string) => {
     return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
+        type: "UPDATE-NEW-MESSAGE-TEXT",
         NewMessage: NewMessage
     } as const
 }
@@ -54,7 +55,7 @@ let initialState: DialogPageType = {
 
 const dialogsPageReducer = (state: DialogPageType = initialState, action: ActionsTypes): DialogPageType => {
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-BODY":
+        case "UPDATE-NEW-MESSAGE-TEXT":
             return {...state, textForNewMessage: action.NewMessage}
         case "SEND-MESSAGE":
             let body = state.textForNewMessage

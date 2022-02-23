@@ -1,14 +1,14 @@
-import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsPage-reducer";
+//import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsPage-reducer";
 
 
 type ActionsTypes =
-    ReturnType<typeof addPostActionCreator> |
-    ReturnType<typeof ChangeNewTextCallbackActionCreator> |
-    ReturnType<typeof updateNewMessageBodyAC> |
-    ReturnType<typeof sendMessageAC> |
+    ReturnType<typeof addPostAC> |
+    ReturnType<typeof updateNewPostTextAC> |
+    //ReturnType<typeof updateNewMessageBodyAC> |
+    //ReturnType<typeof sendMessageAC> |
     ReturnType<typeof SetUserProfile>
 
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
@@ -26,15 +26,15 @@ export type SetUserProfile = {
 
 
 //-----------ACTION CREATORS--------
-export const addPostActionCreator = () => {
+export const addPostAC = () => {
     return {
         type: "ADD-POST"
         // postMessage: postMessage
     } as const
 }
-export const ChangeNewTextCallbackActionCreator = (NewText: string) => {
+export const updateNewPostTextAC = (NewText: string) => {
     return {
-        type: "CHANGE-NEW-TEXT-CALLBACK",
+        type: "UPDATE-NEW-POST-TEXT",
         NewText: NewText
     } as const
 }
@@ -42,7 +42,7 @@ export const SetUserProfile = (Profile: []) => {
     return {
         type: "SET-USER-PROFILE",
         Profile
-    }as const
+    } as const
 
 }
 
@@ -63,13 +63,13 @@ let initialState: ProfilePageType = {
 const profilePageReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
-            let stateMessage = state.messageForNewPost
+            let newMessage = state.messageForNewPost
             return {
                 ...state,
-                posts: [...state.posts, {id: new Date().getTime(), message: stateMessage, likesCount: 0}],
+                posts: [...state.posts, {id: new Date().getTime(), message: newMessage, likesCount: 0}],
                 messageForNewPost: ""
             }
-        case "CHANGE-NEW-TEXT-CALLBACK":
+        case "UPDATE-NEW-POST-TEXT":
             return {...state, messageForNewPost: action.NewText}
         case "SET-USER-PROFILE":
             return {...state, profile: action.Profile}

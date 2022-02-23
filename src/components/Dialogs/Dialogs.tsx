@@ -25,15 +25,15 @@ const Dialogs = (props: DialogsPropsType) => {
 
     //let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    let addMessage = () => {
+    let sendMessage = () => {
         if (state.textForNewMessage.trim() !== "") {
-            props.addMessage()
+            props.sendMessage()
         }
     }
 
     //???
     let onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.newMessageChangeHandler(e.currentTarget.value)
+        props.updateNewMessageText(e.currentTarget.value)
     }
 
     return (
@@ -49,13 +49,12 @@ const Dialogs = (props: DialogsPropsType) => {
             <div>
                 <textarea
                     onChange={onMessageChange}
-                    //ref={newMessageElement}
                     value={state.textForNewMessage}
                 >
 
                 </textarea>
                 <br/>
-                <button onClick={addMessage}>Send message</button>
+                <button onClick={sendMessage}>Send message</button>
             </div>
         </div>
     )

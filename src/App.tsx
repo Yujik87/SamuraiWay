@@ -2,10 +2,9 @@ import React from 'react';
 import {Route} from "react-router-dom";
 import './App.css';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
-import Users from "./components/Users/Users";
+import {Profile} from "./components/Profile/Profile";
 
 
 function App() {
@@ -17,12 +16,12 @@ function App() {
                 <Route path='/dialogs'
                        render={() => <DialogsContainer/>}
                 />
-                <Route path='/users'
+                {/*<Route path='/users'
                        render={() => <Users/>}
+                />*/}
+                <Route path='/profile'
+                       render={() => <Profile />}
                 />
-                {/*<Route path='/profile'
-                       render={() => <ProfileContainer />}
-                    />*/}
 
                 {/* <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

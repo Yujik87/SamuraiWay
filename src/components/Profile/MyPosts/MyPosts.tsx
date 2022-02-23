@@ -1,35 +1,28 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {PostType} from "../../../redux/state";
+import {MyPostsPropsType} from "../MyPostsContainer";
 
 
-type MyPostPropsType = {
-    postsArr: Array<PostType>
-    newPostText: string
-    updateNewPostText: (newText: string | undefined) => void
-    addPost: () => void
-}
-export const MyPosts = (props: MyPostPropsType) => {
 
-    let postsElements = props.postsArr.map(
+export const MyPosts = (props: MyPostsPropsType) => {
+
+    let postsElements = props.posts.map(
         p => <Post
             message={p.message}
             likesCount={p.likesCount}
         />)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    //let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => {
-        //let text = newPostElement.current?.value;
-        //newPostElement.current?.value = '';
-        props.addPost();
-        //props.updateNewPostText('');
+    let onAddPost = () => {
+        if (props.messageForNewPost.trim() !== "") {
+            props.addPost()
+        }
     }
 
-    let onPostChange = () => {
-        let text = newPostElement.current?.value;
-        props.updateNewPostText(text);
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value);
     }
 
     return (
@@ -37,14 +30,13 @@ export const MyPosts = (props: MyPostPropsType) => {
             My Posts
             <div>
                 <textarea
+                    value={props.messageForNewPost}
                     onChange={onPostChange}
-                    ref={newPostElement}
-                    value={props.newPostText}
                 >
 
                 </textarea>
                 <br/>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsElements}
