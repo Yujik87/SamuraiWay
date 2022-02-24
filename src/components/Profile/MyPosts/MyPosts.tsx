@@ -13,8 +13,6 @@ export const MyPosts = (props: MyPostsPropsType) => {
             likesCount={p.likesCount}
         />)
 
-    //let newPostElement = React.createRef<HTMLTextAreaElement>()
-
     let onAddPost = () => {
         if (props.messageForNewPost.trim() !== "") {
             props.addPost()

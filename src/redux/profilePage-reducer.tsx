@@ -48,7 +48,7 @@ export const SetUserProfile = (Profile: []) => {
 
 
 let initialState: ProfilePageType = {
-    messageForNewPost: "",
+    messageForNewPost: "it-kamasutra",
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'it\'s my first post', likesCount: 11},
@@ -66,7 +66,7 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: Actio
             let newMessage = state.messageForNewPost
             return {
                 ...state,
-                posts: [...state.posts, {id: new Date().getTime(), message: newMessage, likesCount: 0}],
+                posts: [{id: new Date().getTime(), message: newMessage, likesCount: 0}, ...state.posts],
                 messageForNewPost: ""
             }
         case "UPDATE-NEW-POST-TEXT":
