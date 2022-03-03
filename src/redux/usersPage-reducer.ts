@@ -14,13 +14,15 @@ export type UserType = {
 }
 export type ProfilePageType = {
     users: Array<UserType>
-    //profile: []
-
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
-export type SetUserProfile = {
+
+/*export type SetUserProfile = {
     type: "SET-USER-PROFILE"
     Profile: []
-}
+}*/
 
 
 //-----------ACTION CREATORS--------
@@ -34,7 +36,9 @@ export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users
 
 let initialState: ProfilePageType = {
     users: [],
-    //profile: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 
