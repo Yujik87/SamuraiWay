@@ -2,15 +2,21 @@ import React from 'react';
 import styles from './Users.module.css';
 import axios from "axios";
 import userPhoto from '../../assets/images/avatar_male.png'
+import {setCurrentpageAC} from "../../redux/usersPage-reducer";
 
 class Users extends React.Component{
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesCount}`).then((response: any) => {
-            debugger
             this.props.setUsers(response.data.items);
         })
     }
 
+    onPageChanged(pageNumber: number) {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesCount}`).then((response: any) => {
+            this.props.setUsers(response.data.items);
+        })
+    }
 
 
     render() {
@@ -25,7 +31,7 @@ class Users extends React.Component{
         return <div>
             <div>
                 {pages.map(p => {
-                    return <span className={this.props.currentPage === p && styles.selectedPage}>{p}</span>
+                    return <span className={this.props.currentPage === p && styles.selectedPage} onClick={() => {this.onPageChanged(p)}}>{p}</span>
                 })}
             </div>
             <button onClick={this.getUsers}>Get users</button>
