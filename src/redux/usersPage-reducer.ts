@@ -3,7 +3,8 @@ type ActionsTypes =
     ReturnType<typeof followAC> |
     ReturnType<typeof unfollowAC> |
     ReturnType<typeof setUsersAC> |
-    ReturnType<typeof setCurrentPageAC>
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setTotalUsersCountAC>
 
 export type UserType = {
     id: string
@@ -35,6 +36,8 @@ export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users
 
 export const setCurrentPageAC = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage}) as const
 
+export const setTotalUsersCountAC = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", count: totalCount}) as const
+
 
 
 let initialState: ProfilePageType = {
@@ -57,6 +60,8 @@ const usersPageReducer = (state: ProfilePageType = initialState, action: Actions
             return {...state, users: action.users}
         case 'SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
+        case 'SET-TOTAL-USERS-COUNT':
+            return {...state, totalUsersCount: action.count}
         default:
             return state
     }
