@@ -4,7 +4,8 @@ type ActionsTypes =
     ReturnType<typeof unfollow> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalUsersCount>
+    ReturnType<typeof setTotalUsersCount> |
+    ReturnType<typeof toggleIsFetching>
 
 export type UserType = {
     id: string
@@ -22,10 +23,6 @@ export type ProfilePageType = {
     isFetching: boolean
 }
 
-/*export type SetUserProfile = {
-    type: "SET-USER-PROFILE"
-    Profile: []
-}*/
 
 
 //-----------ACTION CREATORS--------
@@ -39,6 +36,7 @@ export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE
 
 export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", count: totalCount}) as const
 
+export const toggleIsFetching = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching}) as const
 
 
 let initialState: ProfilePageType = {
@@ -64,6 +62,8 @@ const usersPageReducer = (state: ProfilePageType = initialState, action: Actions
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-USERS-COUNT':
             return {...state, totalUsersCount: action.count}
+        case 'TOGGLE-IS-FETCHING':
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
