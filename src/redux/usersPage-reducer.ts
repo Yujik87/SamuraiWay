@@ -19,6 +19,7 @@ export type ProfilePageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 /*export type SetUserProfile = {
@@ -44,7 +45,8 @@ let initialState: ProfilePageType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 
