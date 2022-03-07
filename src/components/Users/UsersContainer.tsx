@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Users from "./UsersC";
+import Users from "./Users";
 import {Dispatch} from "redux";
 import {
     followAC,

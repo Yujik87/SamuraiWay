@@ -1,27 +1,38 @@
 import React from 'react';
 import styles from './Users.module.css';
-import axios from "axios";
 import userPhoto from '../../assets/images/avatar_male.png'
+import {UserType} from "../../redux/usersPage-reducer";
 
-let Users = (props: any) => {
 
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then((response: any) => {
-                debugger
-                props.setUsers(response.data.items);
-            })
-        }
+type usersPropsType = {
+    users: Array<UserType>
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (pageNumber: number) => void
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+}
+
+let Users = (props: usersPropsType) => {
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
-    props.setUsers([
-        {id: 1, photoUrl: '', followed: false, fullname: 'Dmitry', status: 'I`m boss!', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: 1, photoUrl: '', followed: true, fullname: 'Alex', status: 'I`m boss!', location: {city: 'Moscow', country: 'Russia'}},
-        {id: 1, photoUrl: '', followed: false, fullname: 'Bob', status: 'I`m boss!', location: {city: 'Kiev', country: 'Ukraine'}},
-    ])
-
     return <div>
-        <button onClick={getUsers}>Get users</button>
+        <div>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? styles.selectedPage : ""}
+                             onClick={() => {
+                                 props.onPageChanged(p)
+                             }}>{p}</span>
+            })}
+        </div>
+        {/*<button onClick={this.getUsers}>Get users</button>*/}
         {
             props.users.map((u: any) =>
                 <div key={u.id}>
@@ -31,12 +42,16 @@ let Users = (props: any) => {
                     </div>
                     <div>
                         {u.followed ?
-                            <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button> :
-                            <button onClick={() => {props.follow(u.id)}}>Follow</button>
-                            }
+                            <button onClick={() => {
+                                props.unfollow(u.id)
+                            }}>Unfollow</button> :
+                            <button onClick={() => {
+                                props.follow(u.id)
+                            }}>Follow</button>
+                        }
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.fullname}</div>
                         <div>{u.status}</div>
@@ -46,9 +61,8 @@ let Users = (props: any) => {
                         <div>{u.location.city}</div>
                     </span>
                 </span>
-            </div>)
+                </div>)
         }
     </div>
 }
-
 export default Users;
