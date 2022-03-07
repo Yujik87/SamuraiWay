@@ -24,17 +24,9 @@ let Users = (props: usersPropsType) => {
     }
 
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ""}
-                             onClick={() => {
-                                 props.onPageChanged(p)
-                             }}>{p}</span>
-            })}
-        </div>
-        {/*<button onClick={this.getUsers}>Get users</button>*/}
+
         {
-            props.users.map((u: any) =>
+            props.users.map((u) =>
                 <div key={u.id}>
                 <span>
                     <div>
@@ -51,18 +43,27 @@ let Users = (props: usersPropsType) => {
                         }
                     </div>
                 </span>
-                    <span>
-                    <span>
-                        <div>{u.fullname}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
-                    </span>
+                <span>
+                     <span>
+                         <div>{u.name}</div>
+                         <div>{u.status}</div>
+                     </span>
+                     <span>
+                         <div>{'u.location.country'}</div>
+                         <div>{'u.location.city'}</div>
+                     </span>
                 </span>
                 </div>)
         }
+        <div>
+            {pages.map(p =>
+                <span className={props.currentPage === p ? styles.selectedPage : ""}
+                      onClick={() => {
+                          props.onPageChanged(p)
+                      }}>{p} </span>
+            )}
+
+        </div>
     </div>
 }
 export default Users;

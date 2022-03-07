@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {Dispatch} from "redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    unfollow,
     UserType
 } from "../../redux/usersPage-reducer";
 import axios from "axios";
@@ -17,19 +17,20 @@ import axios from "axios";
 class UsersContainer extends React.Component<usersPropsType, usersPropsType>{
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then((response: any) => {
+            .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
             })
     }
 
-    onPageChanged(pageNumber: number) {
+    onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then((response: any) => {
+            .then(response => {
                 this.props.setUsers(response.data.items);
             })
     }
+
 
     render() {
         return <Users
@@ -70,11 +71,11 @@ type mapDispatchToPropsType = {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        follow: (userId: string) => {dispatch(followAC(userId))},
-        unfollow: (userId: string) => {dispatch(unfollowAC(userId))},
-        setUsers: (users: any) => {dispatch(setUsersAC(users))},
-        setCurrentPage: (pageNumber: number) => {dispatch(setCurrentPageAC(pageNumber))},
-        setTotalUsersCount: (totalCount: number) => {dispatch(setTotalUsersCountAC(totalCount))}
+        follow: (userId: string) => {dispatch(follow(userId))},
+        unfollow: (userId: string) => {dispatch(unfollow(userId))},
+        setUsers: (users: any) => {dispatch(setUsers(users))},
+        setCurrentPage: (pageNumber: number) => {dispatch(setCurrentPage(pageNumber))},
+        setTotalUsersCount: (totalCount: number) => {dispatch(setTotalUsersCount(totalCount))}
     }
 }
 

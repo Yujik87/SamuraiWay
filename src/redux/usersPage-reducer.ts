@@ -1,18 +1,18 @@
 
 type ActionsTypes =
-    ReturnType<typeof followAC> |
-    ReturnType<typeof unfollowAC> |
-    ReturnType<typeof setUsersAC> |
-    ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setTotalUsersCountAC>
+    ReturnType<typeof follow> |
+    ReturnType<typeof unfollow> |
+    ReturnType<typeof setUsers> |
+    ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setTotalUsersCount>
 
 export type UserType = {
     id: string
-    photoUrl: string
+    photos: {small: string, large: string}
     followed: boolean
-    fullname: string
+    name: string
     status: string
-    location: {city: string, country: string}
+    //location: {city: string, country: string}
 }
 export type ProfilePageType = {
     users: Array<UserType>
@@ -28,15 +28,15 @@ export type ProfilePageType = {
 
 
 //-----------ACTION CREATORS--------
-export const followAC = (userId: string) => ({type: "FOLLOW", userId}) as const
+export const follow = (userId: string) => ({type: "FOLLOW", userId}) as const
 
-export const unfollowAC = (userId: string) => ({type: "UNFOLLOW", userId}) as const
+export const unfollow = (userId: string) => ({type: "UNFOLLOW", userId}) as const
 
-export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users}) as const
+export const setUsers = (users: Array<UserType>) => ({type: "SET-USERS", users}) as const
 
-export const setCurrentPageAC = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage}) as const
+export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage}) as const
 
-export const setTotalUsersCountAC = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", count: totalCount}) as const
+export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", count: totalCount}) as const
 
 
 
