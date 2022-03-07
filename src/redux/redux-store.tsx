@@ -14,4 +14,6 @@ export type AppStateType = ReturnType <typeof rootReducers>
 
 let store = createStore(rootReducers);
 
+//window.store = store;
+
 export default store;

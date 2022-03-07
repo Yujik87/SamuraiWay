@@ -8,7 +8,7 @@ import MyPostsContainer, {MyPostsPropsType} from "./MyPostsContainer";
 export const Profile = (props: any) => {
     return (
         <div className={s.content}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer />
         </div>
     )

@@ -4,8 +4,6 @@
 type ActionsTypes =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateNewPostTextAC> |
-    //ReturnType<typeof updateNewMessageBodyAC> |
-    //ReturnType<typeof sendMessageAC> |
     ReturnType<typeof SetUserProfile>
 
 export type PostType = {
@@ -19,10 +17,10 @@ export type ProfilePageType = {
     profile: []
 
 }
-export type SetUserProfile = {
+/*export type SetUserProfile = {
     type: "SET-USER-PROFILE"
     Profile: []
-}
+}*/
 
 
 //-----------ACTION CREATORS--------

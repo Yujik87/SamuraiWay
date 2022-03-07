@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {Dispatch} from "redux";
 import {
-    follow,
+    follow, ProfilePageType,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleIsFetching,
@@ -12,6 +12,7 @@ import {
 } from "../../redux/usersPage-reducer";
 import axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
+import {AppStateType} from "../../redux/redux-store";
 
 
 
@@ -23,7 +24,7 @@ class UsersContainer extends React.Component<usersPropsType, usersPropsType>{
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
-            })
+            });
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -33,7 +34,7 @@ class UsersContainer extends React.Component<usersPropsType, usersPropsType>{
             .then(response => {
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items);
-            })
+            });
     }
 
 
@@ -61,7 +62,7 @@ type mapStateToPropsType = {
     isFetching: boolean
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

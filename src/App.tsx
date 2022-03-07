@@ -4,9 +4,8 @@ import './App.css';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
-import {Profile} from "./components/Profile/Profile";
-import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
                        render={() => <UsersContainer/>}
                 />
                 <Route path='/profile'
-                       render={() => <Profile />}
+                       render={() => <ProfileContainer />}
                 />
 
                 {/* <Route path='/news' component={News}/>

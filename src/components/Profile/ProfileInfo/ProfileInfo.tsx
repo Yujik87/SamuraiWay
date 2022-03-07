@@ -1,11 +1,12 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props: any) => {
     return (
         <div>
             <div className={s.descriptionBlock}>
-                ava + description
+                <img src={props.profile.photos.small} />
+                <p>{props.profile.fullName}</p>
             </div>
             <div>
                 <img
