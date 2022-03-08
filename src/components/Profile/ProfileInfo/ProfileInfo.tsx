@@ -7,8 +7,6 @@ export const ProfileInfo = (props: any) => {
         return <Preloader />
     }
 
-   // почему не работает с условием if(!props.profile) {...} ???
-
     return (
         <div>
             <div className={s.descriptionBlock}>

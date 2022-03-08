@@ -20,7 +20,7 @@ function App() {
                 <Route path='/users'
                        render={() => <UsersContainer/>}
                 />
-                <Route path='/profile'
+                <Route path='/profile/:usersId?'
                        render={() => <ProfileContainer />}
                 />
 
