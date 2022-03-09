@@ -31,7 +31,7 @@ type mapStateToPropsType = {
     profile: []
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
        profile: state.profilePage.profile
     }

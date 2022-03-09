@@ -62,7 +62,7 @@ type mapStateToPropsType = {
     isFetching: boolean
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -81,7 +81,7 @@ type mapDispatchToPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-/*let mapDispatchToProps = (dispatch: Dispatch) => {
+/*let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         follow: (userId: string) => {dispatch(follow(userId))},
         unfollow: (userId: string) => {dispatch(unfollow(userId))},
